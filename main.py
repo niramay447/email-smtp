@@ -1,9 +1,12 @@
 from datetime import datetime
 import pandas
-
+import random
 today = datetime.now()
 today_tuple = (today.month, today.day)
 
 data = pandas.read_csv("birthdays.csv")
 
-new_dict = {(data_row.month,data_row.day): data for (index, data_row) in data.iterrows()}
+birthdays_dict = {(data_row.month,data_row.day): data for (index, data_row) in data.iterrows()}
+
+if today_tuple in birthdays_dict:
+    file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
