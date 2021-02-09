@@ -10,3 +10,9 @@ birthdays_dict = {(data_row.month,data_row.day): data for (index, data_row) in d
 
 if today_tuple in birthdays_dict:
     file_path = f"letter_templates/letter_{random.randint(1,3)}.txt"
+    birthday_person = birthdays_dict[today_tuple]
+    with open(file_path) as letter_file:
+        contents = letter_file.read()
+        contents.replace("[NAME", birthday_person["name"])
+
+ 
