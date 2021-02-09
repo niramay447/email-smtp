@@ -1,6 +1,10 @@
 from datetime import datetime
 import pandas
 import random
+import smtplib
+
+MY_EMAIL = "example@email.com"
+MY_PASSWORD = "ExamplePassword"
 today = datetime.now()
 today_tuple = (today.month, today.day)
 
@@ -15,4 +19,6 @@ if today_tuple in birthdays_dict:
         contents = letter_file.read()
         contents.replace("[NAME", birthday_person["name"])
 
- 
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
